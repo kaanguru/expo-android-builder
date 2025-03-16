@@ -11,7 +11,7 @@ Docker image for Expo builds to build android apps
 
 ## Usage
 
-1. Clone this repository
+1. Clone this repository put it inside a subfolder like `docker`
 2. Build the image `docker-compose up -d`
 3. Get into container bash `docker exec -it expo-android-builder bash`
 4. Run prebuild `docker exec -it expo-android-builder npx expo prebuild -p android`
