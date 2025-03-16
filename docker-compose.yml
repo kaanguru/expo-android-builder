@@ -3,7 +3,7 @@ services:
     image: kaanguru/expo-android-builder:latest
     container_name: expo-android-builder
     volumes:
-      - ./:/app
+      - ../:/app
     ports:
       - "19000:19000"
       - "19001:19001"
