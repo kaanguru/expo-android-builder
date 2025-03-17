@@ -4,21 +4,21 @@ Docker image for Expo builds to build android apps
 
 ## Prerequisites
 
-- Docker and docker-compose installed
+- Docker and docker-compose installed (or podman and podman-compose)
 
 - Expo App Folder `npx create-expo-app@latest`
 
+## Usage with podman
 
-## Usage
-
-1. Clone this repository put it inside a subfolder like `docker`
-2. Build the image `docker-compose up -d`
-3. Get into container bash `docker exec -it expo-android-builder bash`
-4. Run prebuild `docker exec -it expo-android-builder npx expo prebuild -p android`
-5. Add 'android/\*' to .gitignore file
-6. Login to expo `eas login`
-7. Build `npx eas build --local --platform android --profile preview`
-8. Turn off  `docker-compose down`
+1. Clone this repository put it inside a subfolder like `podman`
+2. Build the image `podman-compose up -d`
+3. Get into container bash `podman exec -it expo-android-builder bash`
+4. Add 'android/\*' to .gitignore file
+5. Login to expo `eas login`
+6. Build `EAS_NO_VCS=1 npx eas build --platform android --profile development --local --output dist/android/local/dev-app.apk && echo "Build completed successfully. Artifact location is: dist/android/local/dev-app.apk"`
+7. Run prebuild `podman exec -it expo-android-builder npx expo prebuild -p android`
+8. Build preview `podman exec -it expo-android-builder EAS_NO_VCS=1 npx eas build --platform android --profile preview --local --output dist/android/local/preview-app.apk && echo "Build completed successfully. Artifact location is: dist/android/local/preview-app.apk"`
+9. Turn off `podman compose down`
 
 ---
 
@@ -30,7 +30,7 @@ This will add docker folder with Dockerfile and docker-compose.yml
 
 ## Build the image and start the container
 
-`docker-compose up -d`
+`podman-compose up -d`
 
 ## Logs
 
